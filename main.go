@@ -1,5 +1,0 @@
-package convertgo
-
-func main() {
-
-}
