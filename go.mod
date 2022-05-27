@@ -1,3 +1,3 @@
-module convertgo
+module github.com/farhaniupr/convertgo
 
 go 1.18
