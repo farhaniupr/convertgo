@@ -47,13 +47,13 @@ func TestPointStringToPointString(t *testing.T) {
 	value_testing := "data"
 	value_star_string = &value_testing
 
-	result := convertgo.PointStringToPointString(value_star_string, "http")
+	result := convertgo.PointStringToPointString(value_star_string, "http", "//")
 	result_testing := convertgo.PointStringToPointString(nil)
 
 	var r_result string
 	r_result = *result
 
-	if r_result != "httpdata" {
+	if r_result != "//httpdata" {
 		t.Fatalf("error")
 	}
 
