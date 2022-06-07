@@ -98,7 +98,7 @@ func PostStruct(c *gin.Context, values *forms.Data, Url string, target interface
 	jsoniter.NewDecoder(reader).Decode(target)
 }
 
-func PostStructInterface(c *gin.Context, values map[string]interface{}, Url string, target interface{}) {
+func PostStructInterface(c *gin.Context, values map[string]interface{}, Url string, nameheader string, token string, target interface{}) {
 
 	jsonValue, err := json.Marshal(values)
 	if err != nil {
@@ -111,7 +111,7 @@ func PostStructInterface(c *gin.Context, values map[string]interface{}, Url stri
 	if err != nil {
 		c.AsciiJSON(500, err.Error())
 	}
-	req.Header.Add("APPTOKEN", "klaklikapptoken")
+	req.Header.Add(nameheader, token)
 
 	reader := req.Body
 	defer reader.Close()
@@ -120,7 +120,7 @@ func PostStructInterface(c *gin.Context, values map[string]interface{}, Url stri
 
 }
 
-func PostStructInterfaceWioContext(values map[string]interface{}, Url string, target interface{}) {
+func PostStructInterfaceWioContext(values map[string]interface{}, Url string, nameheader string, token string, target interface{}) {
 
 	jsonValue, _ := json.Marshal(values)
 
@@ -128,7 +128,7 @@ func PostStructInterfaceWioContext(values map[string]interface{}, Url string, ta
 
 	req, _ := http.Post(Url, "application/json", bytejson)
 
-	req.Header.Add("APPTOKEN", "klaklikapptoken")
+	req.Header.Add(nameheader, token)
 
 	reader := req.Body
 	defer reader.Close()
@@ -183,13 +183,7 @@ func Post(c *gin.Context, values map[string]interface{}, Url string) map[string]
 	return res
 }
 
-// if strings.ContainsAny(keylower, "[") {
-// 	keylower = stringreplace.Before(keylower, "[")
-// }
-// keyarray = append(keyarray, keylower)
-// valarray = append(valarray, val)
-
-func PostwithArray(c *gin.Context, urltarget string, key []string, val []string, target interface{}) {
+func PostwithArray(c *gin.Context, urltarget string, key []string, val []string, nameheader string, token string, target interface{}) {
 
 	payload := &bytes.Buffer{}
 	writer := multipart.NewWriter(payload)
@@ -209,7 +203,7 @@ func PostwithArray(c *gin.Context, urltarget string, key []string, val []string,
 		c.AsciiJSON(500, err.Error())
 		return
 	}
-	req.Header.Add("APPTOKEN", "klaklikapptoken")
+	req.Header.Add(nameheader, token)
 
 	req.Header.Set("Content-Type", writer.FormDataContentType())
 	res, err := client.Do(req)
