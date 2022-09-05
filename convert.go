@@ -3,6 +3,7 @@ package convertgo
 import (
 	"fmt"
 	"math"
+	"strconv"
 )
 
 // interface{} to string
@@ -17,13 +18,13 @@ func ItString(value interface{}) string {
 }
 
 // interface{} to interface{}(integer)
-func ItInt(i interface{}) interface{} {
-	if i == nil {
-		return 0
-	} else {
-
-		return i
+func ItInt(i interface{}) (int, error) {
+	value, err := strconv.Atoi(ItString(i))
+	if err != nil {
+		return 0, err
 	}
+
+	return value, nil
 }
 
 // *string to string
