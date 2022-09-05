@@ -18,13 +18,13 @@ func ItString(value interface{}) string {
 }
 
 // interface{} to interface{}(integer)
-func ItInt(i interface{}) (int, error) {
+func ItInt(i interface{}) int {
 	value, err := strconv.Atoi(ItString(i))
 	if err != nil {
-		return 0, err
+		return 0
 	}
 
-	return value, nil
+	return value
 }
 
 // *string to string
