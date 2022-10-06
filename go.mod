@@ -8,4 +8,6 @@ require (
 	github.com/dustin/go-humanize v1.0.0
 	github.com/gin-gonic/gin v1.8.1
 	github.com/json-iterator/go v1.1.12
+	gorm.io/driver/mysql v1.3.6
+	gorm.io/gorm v1.23.10
 )

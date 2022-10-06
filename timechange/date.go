@@ -4,6 +4,7 @@ import (
 	"time"
 
 	"gitee.com/go-package/carbon"
+	"github.com/farhaniupr/convertgo"
 )
 
 // using carbon
@@ -14,11 +15,18 @@ func PostDateString(target_time string) string {
 
 func InterfaceUTCtoGMT7(target interface{}) string {
 
-	t := target.(time.Time)
+	if target == nil {
+		return ""
+	} else if convertgo.ItString(target) == "" {
+		return ""
+	} else {
 
-	loc, _ := time.LoadLocation("Asia/Jakarta")
+		t := target.(time.Time)
 
-	t = t.In(loc)
+		loc, _ := time.LoadLocation("Asia/Jakarta")
 
-	return t.Format("2006-01-02 15:04:02")
+		t = t.In(loc)
+
+		return t.Format("2006-01-02 15:04:02")
+	}
 }

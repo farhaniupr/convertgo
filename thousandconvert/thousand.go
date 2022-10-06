@@ -132,6 +132,13 @@ func NearestThousandFormat(num string) string {
 		afterDecimal = "." + string(xNumSlice[1][0])
 	}
 	final := xNumSlice[0] + afterDecimal + xPart
+
+	if len(num) == 4 {
+		if convertgo.ItInt(string(num[1])) == 0 && convertgo.ItInt(string(num[2])) > 0 {
+			final = string(num[0]) + xPart
+		}
+	}
+
 	return final
 }
 
@@ -164,6 +171,13 @@ func NearestThousandFormatInterface(num interface{}) interface{} {
 			afterDecimal = "." + string(xNumSlice[1][0])
 		}
 		final := xNumSlice[0] + afterDecimal + xPart
+
+		if len(datainterface) == 4 {
+			if convertgo.ItInt(string(datainterface[1])) == 0 && convertgo.ItInt(string(datainterface[2])) > 0 {
+				final = string(datainterface[0]) + xPart
+			}
+		}
+
 		return final
 	} else {
 		return ""
@@ -198,6 +212,13 @@ func NearestThousandFormatString(num interface{}) string {
 			afterDecimal = "." + string(xNumSlice[1][0])
 		}
 		final := xNumSlice[0] + afterDecimal + xPart
+
+		if len(datainterface) == 4 {
+			if convertgo.ItInt(string(datainterface[1])) == 0 && convertgo.ItInt(string(datainterface[2])) > 0 {
+				final = string(datainterface[0]) + xPart
+			}
+		}
+
 		return final
 	} else {
 		return ""
@@ -207,6 +228,8 @@ func NearestThousandFormatString(num interface{}) string {
 
 // format thousand int to string
 func NearestThousandFormatInteger(num int) string {
+
+	datainterface := convertgo.ItString(num)
 
 	flo := float64(num)
 
@@ -230,5 +253,12 @@ func NearestThousandFormatInteger(num int) string {
 		afterDecimal = "." + string(xNumSlice[1][0])
 	}
 	final := xNumSlice[0] + afterDecimal + xPart
+
+	if len(datainterface) == 4 {
+		if convertgo.ItInt(string(datainterface[1])) == 0 && convertgo.ItInt(string(datainterface[2])) > 0 {
+			final = string(datainterface[0]) + xPart
+		}
+	}
+
 	return final
 }
