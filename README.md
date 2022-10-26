@@ -9,6 +9,7 @@ This package use handle problem map[string]interface{} for create dynamic json f
 - map[string]interface to string time ✅
 - map[string]interface to upcase/lowcase string ✅
 - map[string]interface to time different for human ✅
+- custom request http ✅
 
 
 # Thanks for depedency
