@@ -32,6 +32,6 @@ func InterfaceUTCtoGMT7(target interface{}) string {
 	}
 }
 
-func InterfaceWibtoWib(target interface{}) string {
+func InterfaceTimeRemoveWordUtc(target interface{}) string {
 	return strings.ReplaceAll(strings.ReplaceAll(strings.ReplaceAll(convertgo.ItString(target), "T", " "), "Z", ""), " +0000 U C", "")
 }
