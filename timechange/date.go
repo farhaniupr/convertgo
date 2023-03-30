@@ -1,6 +1,7 @@
 package timechange
 
 import (
+	"strings"
 	"time"
 
 	"gitee.com/go-package/carbon"
@@ -29,4 +30,8 @@ func InterfaceUTCtoGMT7(target interface{}) string {
 
 		return t.Format("2006-01-02 15:04:02")
 	}
+}
+
+func InterfaceWibtoWib(target interface{}) string {
+	return strings.ReplaceAll(strings.ReplaceAll(strings.ReplaceAll(convertgo.ItString(target), "T", " "), "Z", ""), " +0000 U C", "")
 }
