@@ -1,9 +1,11 @@
 package convertgo_test
 
 import (
+	"log"
 	"testing"
 
 	"github.com/farhaniupr/convertgo"
+	"github.com/farhaniupr/convertgo/thousandconvert"
 )
 
 // go test -v
@@ -60,4 +62,14 @@ func TestPointStringToPointString(t *testing.T) {
 	if result_testing != nil {
 		t.Fatalf("error")
 	}
+}
+
+func TestThousnad(t *testing.T) {
+	log.Println("testing 29090: ", thousandconvert.NearestThousandFormatInterface("29090"))
+	log.Println("testing 29090: ", thousandconvert.NearestThousandFormat("29090"))
+	log.Println("testing 29090: ", thousandconvert.NearestThousandFormatInteger(29090))
+
+	log.Println("testing 2099: ", thousandconvert.NearestThousandFormatInterface("2099"))
+	log.Println("testing 2099: ", thousandconvert.NearestThousandFormat("2099"))
+	log.Println("testing 2099: ", thousandconvert.NearestThousandFormatInteger(2099))
 }

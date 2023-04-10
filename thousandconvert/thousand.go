@@ -137,6 +137,14 @@ func NearestThousandFormat(num string) string {
 		if convertgo.ItInt(string(num[1])) == 0 && convertgo.ItInt(string(num[2])) > 0 {
 			final = string(num[0]) + xPart
 		}
+	} else if len(num) == 5 {
+		if convertgo.ItInt(string(num[2])) == 0 && convertgo.ItInt(string(num[3])) > 0 {
+			final = string(num[0]) + string(num[1]) + xPart
+		}
+	} else if len(num) == 6 {
+		if convertgo.ItInt(string(num[3])) == 0 && convertgo.ItInt(string(num[4])) > 0 {
+			final = string(num[0]) + string(num[1]) + string(num[2]) + xPart
+		}
 	}
 
 	return final
@@ -175,6 +183,14 @@ func NearestThousandFormatInterface(num interface{}) interface{} {
 		if len(datainterface) == 4 {
 			if convertgo.ItInt(string(datainterface[1])) == 0 && convertgo.ItInt(string(datainterface[2])) > 0 {
 				final = string(datainterface[0]) + xPart
+			}
+		} else if len(datainterface) == 5 {
+			if convertgo.ItInt(string(datainterface[2])) == 0 && convertgo.ItInt(string(datainterface[3])) > 0 {
+				final = string(datainterface[0]) + string(datainterface[1]) + xPart
+			}
+		} else if len(datainterface) == 6 {
+			if convertgo.ItInt(string(datainterface[3])) == 0 && convertgo.ItInt(string(datainterface[4])) > 0 {
+				final = string(datainterface[0]) + string(datainterface[1]) + string(datainterface[2]) + xPart
 			}
 		}
 
@@ -217,6 +233,14 @@ func NearestThousandFormatString(num interface{}) string {
 			if convertgo.ItInt(string(datainterface[1])) == 0 && convertgo.ItInt(string(datainterface[2])) > 0 {
 				final = string(datainterface[0]) + xPart
 			}
+		} else if len(datainterface) == 5 {
+			if convertgo.ItInt(string(datainterface[2])) == 0 && convertgo.ItInt(string(datainterface[3])) > 0 {
+				final = string(datainterface[0]) + string(datainterface[1]) + xPart
+			}
+		} else if len(datainterface) == 6 {
+			if convertgo.ItInt(string(datainterface[3])) == 0 && convertgo.ItInt(string(datainterface[4])) > 0 {
+				final = string(datainterface[0]) + string(datainterface[1]) + string(datainterface[2]) + xPart
+			}
 		}
 
 		return final
@@ -257,6 +281,14 @@ func NearestThousandFormatInteger(num int) string {
 	if len(datainterface) == 4 {
 		if convertgo.ItInt(string(datainterface[1])) == 0 && convertgo.ItInt(string(datainterface[2])) > 0 {
 			final = string(datainterface[0]) + xPart
+		}
+	} else if len(datainterface) == 5 {
+		if convertgo.ItInt(string(datainterface[2])) == 0 && convertgo.ItInt(string(datainterface[3])) > 0 {
+			final = string(datainterface[0]) + string(datainterface[1]) + xPart
+		}
+	} else if len(datainterface) == 6 {
+		if convertgo.ItInt(string(datainterface[3])) == 0 && convertgo.ItInt(string(datainterface[4])) > 0 {
+			final = string(datainterface[0]) + string(datainterface[1]) + string(datainterface[2]) + xPart
 		}
 	}
 
