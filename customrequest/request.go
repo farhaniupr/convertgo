@@ -2,7 +2,9 @@ package customrequest
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
+	"io/ioutil"
 	"mime/multipart"
 	"net/http"
 	"time"
@@ -27,7 +29,9 @@ func Get(c *gin.Context, url string, target interface{}) error {
 	}
 	reader := response.Body
 	defer reader.Close()
-	return jsoniter.NewDecoder(reader).Decode(target)
+
+	jsoniter.NewDecoder(reader).Decode(target)
+	return nil
 }
 
 func GetApi(c *gin.Context, url string) (interface{}, error) {
@@ -242,4 +246,79 @@ func GetHeader(c *gin.Context, key []string) (string, string) {
 		}
 	}
 	return apptoken, usertoken
+}
+
+func GetV2(c context.Context, url string) (interface{}, error) {
+
+	method := "GET"
+
+	client := &http.Client{}
+	req_url, err := http.NewRequest(method, url, nil)
+
+	if err != nil {
+		return nil, err
+	}
+	req_url.Header.Add("Content-Type", "application/json")
+
+	res, err := client.Do(req_url)
+	if err != nil {
+		return nil, err
+	}
+	defer res.Body.Close()
+
+	body, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		return nil, err
+	}
+
+	var result map[string]interface{}
+
+	json.Unmarshal([]byte(body), &result)
+
+	if result != nil {
+		return result, nil
+	} else {
+		return string(body), nil
+	}
+}
+
+func PostV2(c context.Context, url string, req map[string]interface{}) (interface{}, error) {
+
+	method := "POST"
+
+	jsonValue, err := json.Marshal(req)
+	if err != nil {
+		return nil, err
+	}
+
+	bytejson := bytes.NewBuffer(jsonValue)
+
+	client := &http.Client{}
+	req_url, err := http.NewRequest(method, url, bytejson)
+
+	if err != nil {
+		return nil, err
+	}
+	req_url.Header.Add("Content-Type", "application/json")
+
+	res, err := client.Do(req_url)
+	if err != nil {
+		return nil, err
+	}
+	defer res.Body.Close()
+
+	body, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		return nil, err
+	}
+
+	var result map[string]interface{}
+
+	json.Unmarshal([]byte(body), &result)
+
+	if result != nil {
+		return result, nil
+	} else {
+		return string(body), nil
+	}
 }
